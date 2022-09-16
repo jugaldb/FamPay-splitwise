@@ -14,7 +14,6 @@ export class SplitwiseUserAPIService {
       number,
       email
     );
-    console.log("service: " + res);
     return res;
   }
 
