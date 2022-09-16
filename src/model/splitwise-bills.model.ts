@@ -1,6 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
 
-export interface SplitwiseGroupInterface {
+export interface BillInterface {
   user1: Schema.Types.ObjectId;
   user2: Schema.Types.ObjectId;
   amount: number;
@@ -8,7 +8,7 @@ export interface SplitwiseGroupInterface {
   title: string;
 }
 
-const billSchema = new Schema<SplitwiseGroupInterface>({
+const billSchema = new Schema<BillInterface>({
   user1: { type: Schema.Types.ObjectId, ref: "User", required: true },
   user2: { type: Schema.Types.ObjectId, ref: "User", required: true },
   amount: { type: Number, required: true },
@@ -16,7 +16,4 @@ const billSchema = new Schema<SplitwiseGroupInterface>({
   title: { type: String },
 });
 
-export const Group = model<SplitwiseGroupInterface>(
-  "UserGroupMapping",
-  billSchema
-);
+export const Group = model<BillInterface>("BillInterface", billSchema);
