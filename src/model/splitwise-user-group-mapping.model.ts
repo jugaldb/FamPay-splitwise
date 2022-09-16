@@ -1,13 +1,13 @@
 import { Schema, model } from "mongoose";
 
 export interface SplitwiseUserGroupInterface {
-  user: string;
-  group: string;
+  user: Schema.Types.ObjectId;
+  group: Schema.Types.ObjectId;
 }
 
 const userGroupMappingSchema = new Schema<SplitwiseUserGroupInterface>({
-  user: { type: String, required: true },
-  group: { type: String, required: true },
+  user: { type: Schema.Types.ObjectId, ref: "Group", required: true },
+  group: { type: Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 export const UserGroupMapping = model<SplitwiseUserGroupInterface>(

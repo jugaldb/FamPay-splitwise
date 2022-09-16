@@ -1,12 +1,14 @@
 import * as bodyParser from "body-parser";
 import express from "express";
 import { SplitwiseUserAPIController } from "./controller/splitwise-user-api.controller";
+import { SplitwiseGroupAPIController } from "./controller/splitwise-group-api.controller";
 import "dotenv/config";
 import cors from "cors";
 
 class App {
   public express: express.Application;
   public splitwiseUserAPIController: SplitwiseUserAPIController;
+  public splitwiseGroupAPIController: SplitwiseGroupAPIController;
 
   /* Swagger files start */
 
@@ -17,6 +19,7 @@ class App {
     this.middleware();
     this.routes();
     this.splitwiseUserAPIController = new SplitwiseUserAPIController();
+    this.splitwiseGroupAPIController = new SplitwiseGroupAPIController();
   }
 
   // Configure Express middleware.
@@ -34,8 +37,32 @@ class App {
         let name = req.body.name;
         let number = req.body.number;
         let email = req.body.email!;
+        if (name == "" || email == "" || number == undefined) {
+          return res.status(400).json({
+            message: "Bad request, Params are missing",
+          });
+        }
         this.splitwiseUserAPIController
           .createUser(name, number, email)
+          .then((data) => res.json(data));
+      } catch (e: any) {
+        res.status(500).json({
+          error: e.toString(),
+        });
+      }
+    });
+
+    this.express.post("/api/group/create", (req, res) => {
+      try {
+        let name = req.body.groupName;
+        let owner = req.body.owner;
+        if (name == "") {
+          return res.status(400).json({
+            message: "Bad request, Params are missing",
+          });
+        }
+        this.splitwiseGroupAPIController
+          .createGroup(name, owner)
           .then((data) => res.json(data));
       } catch (e: any) {
         res.status(500).json({

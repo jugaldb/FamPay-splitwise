@@ -8,11 +8,8 @@ export interface SplitwiseGroupInterface {
 
 const groupSchema = new Schema<SplitwiseGroupInterface>({
   name: { type: String, required: true },
-  createdAt: { type: Date, required: true },
+  createdAt: { type: Date },
   owner: { type: Schema.Types.ObjectId, ref: "User", required: true },
 });
 
-export const Group = model<SplitwiseGroupInterface>(
-  "UserGroupMapping",
-  groupSchema
-);
+export const Group = model<SplitwiseGroupInterface>("Group", groupSchema);
