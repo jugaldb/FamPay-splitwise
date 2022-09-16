@@ -16,4 +16,4 @@ const billSchema = new Schema<BillInterface>({
   title: { type: String },
 });
 
-export const Group = model<BillInterface>("BillInterface", billSchema);
+export const Bill = model<BillInterface>("Bill", billSchema);

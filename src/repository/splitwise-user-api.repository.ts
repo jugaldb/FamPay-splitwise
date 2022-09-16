@@ -6,6 +6,7 @@ import {
 } from "../model/splitwise-user-api.model";
 import * as mongoose from "mongoose";
 import { Schema } from "mongoose";
+import { Bill } from "../model/splitwise-bills.model";
 
 export class SplitwiseUserAPIRepository {
   private db: any = {};
@@ -29,9 +30,34 @@ export class SplitwiseUserAPIRepository {
       const res = await user.save();
       console.log(res);
       return { user: user, created: true, alreadyExists: false };
-    } catch (err) {
-      console.log(err);
-      return [];
+    } catch (e: any) {
+      console.log(e);
+      return { error: e.toString() };
+    }
+  }
+
+  async getTotalOwed(user: mongoose.Types.ObjectId) {
+    try {
+      const moneyGiven = await Bill.find({ user1: user });
+      const moneyTaken = await Bill.find({ user2: user });
+      return { moneyGiven, moneyTaken };
+    } catch (e: any) {
+      console.log(e);
+      return { error: e.toString() };
+    }
+  }
+
+  async getTotalOwedInAGroup(
+    user: mongoose.Types.ObjectId,
+    group: mongoose.Types.ObjectId
+  ) {
+    try {
+      const moneyGiven = await Bill.find({ user1: user, group });
+      const moneyTaken = await Bill.find({ user2: user, group });
+      return { moneyGiven, moneyTaken };
+    } catch (e: any) {
+      console.log(e);
+      return { error: e.toString() };
     }
   }
 }

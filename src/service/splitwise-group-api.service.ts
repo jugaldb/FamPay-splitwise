@@ -31,4 +31,35 @@ export class SplitwiseGroupAPIService {
       owner
     );
   }
+
+  async addBill(
+    users: any[],
+    amount: number,
+    title: string,
+    paid_by_id: mongoose.Types.ObjectId,
+    group?: mongoose.Types.ObjectId
+  ) {
+    try {
+      console.log("hello from service");
+      console.log(group);
+      let toBeBilledObjects = [];
+      for (let user of users) {
+        if (user._id.toString() == paid_by_id.toString()) {
+          continue;
+        } else {
+          let billObject = {
+            user1: paid_by_id,
+            user2: user._id,
+            amount: user.amount,
+            group: group ? group : undefined,
+            title: title,
+          };
+          toBeBilledObjects.push(billObject);
+        }
+      }
+      return this.splitwiseGroupAPIRepository.addBill(toBeBilledObjects);
+    } catch (e: any) {
+      return { error: e.toString() };
+    }
+  }
 }

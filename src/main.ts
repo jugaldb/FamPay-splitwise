@@ -52,6 +52,57 @@ class App {
       }
     });
 
+    this.express.get("/api/user/totalOwed", (req, res) => {
+      try {
+        var user = req.query.user;
+        if (!user) {
+          user = "";
+        }
+        if (user == "") {
+          return res.status(400).json({
+            message: "Bad request, Params are missing",
+          });
+        }
+        user = user.toString();
+        this.splitwiseUserAPIController.getTotalOwed(user).then((data) => {
+          res.json(data);
+        });
+      } catch (e: any) {
+        res.status(500).json({
+          error: e.toString(),
+        });
+      }
+    });
+
+    this.express.get("/api/user/totalOwedInAGroup", (req, res) => {
+      try {
+        var user = req.query.user;
+        var group = req.query.group;
+        if (!user) {
+          user = "";
+        }
+        if (!group) {
+          group = "";
+        }
+        if (user == "" || group == "") {
+          return res.status(400).json({
+            message: "Bad request, Params are missing",
+          });
+        }
+        user = user.toString();
+        group = group.toString();
+        this.splitwiseUserAPIController
+          .getTotalOwedInAGroup(user, group)
+          .then((data) => {
+            res.json(data);
+          });
+      } catch (e: any) {
+        res.status(500).json({
+          error: e.toString(),
+        });
+      }
+    });
+
     this.express.post("/api/group/create", (req, res) => {
       try {
         let name = req.body.groupName;
@@ -84,6 +135,25 @@ class App {
         this.splitwiseGroupAPIController
           .addUserToGroup(user, group, owner)
           .then((data) => res.json(data));
+      } catch (e: any) {
+        res.status(500).json({
+          error: e.toString(),
+        });
+      }
+    });
+
+    this.express.post("/api/group/addBill", (req, res) => {
+      try {
+        let users = req.body.users;
+        let amount = req.body.totalAmount;
+        let group = req.body.group;
+        let title = req.body.title;
+        let paid_by = req.body.paidBy;
+        this.splitwiseGroupAPIController
+          .addBill(users, amount, group, title, paid_by)
+          .then((data) => {
+            res.json(data);
+          });
       } catch (e: any) {
         res.status(500).json({
           error: e.toString(),

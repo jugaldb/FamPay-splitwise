@@ -8,6 +8,7 @@ import {
   SplitwiseUserInterface,
   User,
 } from "../model/splitwise-user-api.model";
+import { Bill } from "../model/splitwise-bills.model";
 
 export class SplitwiseGroupAPIRepository {
   private db: any = {};
@@ -48,9 +49,9 @@ export class SplitwiseGroupAPIRepository {
         console.log(res);
         return { group: groupCreated, created: true, alreadyExists: false };
       }
-    } catch (err) {
-      console.log(err);
-      return [];
+    } catch (e: any) {
+      console.log(e);
+      return { error: e.toString() };
     }
   }
 
@@ -83,9 +84,19 @@ export class SplitwiseGroupAPIRepository {
       });
       await mapping.save();
       return { message: "User added to group successfully" };
-    } catch (err) {
-      console.log(err);
-      return [];
+    } catch (e: any) {
+      console.log(e);
+      return { error: e.toString() };
+    }
+  }
+  async addBill(toBeBilledObjects: any[]) {
+    try {
+      const bills = await Bill.insertMany(toBeBilledObjects);
+      console.log("hello from repo");
+      return { bills: toBeBilledObjects };
+    } catch (e: any) {
+      console.log(e);
+      return { error: e.toString() };
     }
   }
 }
