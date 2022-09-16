@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  fampay_backend:
+    container_name: fampay_assignment
+    image: jugaldb/fampay-backend:latest
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URL=$MONGODB_URL
+volumes:
+  nps_data: {}
