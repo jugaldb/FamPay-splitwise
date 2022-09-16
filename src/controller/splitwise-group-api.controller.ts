@@ -15,4 +15,16 @@ export class SplitwiseGroupAPIController {
     console.log("controller: " + res);
     return res;
   }
+
+  async addUserToGroup(user: string, group: string, owner: string) {
+    let userId = new mongoose.Types.ObjectId(user);
+    let groupId = new mongoose.Types.ObjectId(group);
+    let ownerId = new mongoose.Types.ObjectId(owner);
+
+    return await this.splitwiseGroupAPIService.addUserToGroup(
+      userId,
+      groupId,
+      ownerId
+    );
+  }
 }

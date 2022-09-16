@@ -71,6 +71,26 @@ class App {
       }
     });
 
+    this.express.post("/api/group/addUser", (req, res) => {
+      try {
+        let user = req.body.user;
+        let group = req.body.group;
+        let owner = req.body.owner;
+        if (user == "" || group == "") {
+          return res.status(400).json({
+            message: "Bad request, Params are missing",
+          });
+        }
+        this.splitwiseGroupAPIController
+          .addUserToGroup(user, group, owner)
+          .then((data) => res.json(data));
+      } catch (e: any) {
+        res.status(500).json({
+          error: e.toString(),
+        });
+      }
+    });
+
     this.express.get("/", (req, res, next) => {
       res.status(200).json({
         message:

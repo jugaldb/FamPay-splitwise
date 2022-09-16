@@ -19,4 +19,16 @@ export class SplitwiseGroupAPIService {
     console.log("service: " + res);
     return res;
   }
+
+  async addUserToGroup(
+    user: mongoose.Types.ObjectId,
+    group: mongoose.Types.ObjectId,
+    owner: mongoose.Types.ObjectId
+  ) {
+    return await this.splitwiseGroupAPIRepository.addUserToGroup(
+      user,
+      group,
+      owner
+    );
+  }
 }
