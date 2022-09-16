@@ -15,7 +15,6 @@ export class SplitwiseUserAPIController {
       email
     );
 
-    console.log("controller: " + res);
     return res;
   }
 

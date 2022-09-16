@@ -9,11 +9,9 @@ export class SplitwiseGroupAPIController {
   }
 
   async createGroup(name: string, owner: string) {
-    console.log(" conteoller: " + name);
     let ownerId = new mongoose.Types.ObjectId(owner);
     const res = await this.splitwiseGroupAPIService.createGroup(name, ownerId);
 
-    console.log("controller: " + res);
     return res;
   }
 
@@ -45,11 +43,8 @@ export class SplitwiseGroupAPIController {
       userIDs.push(obj);
     }
     if (validateAmount(amount, userIDs)) {
-      console.log("validated");
       let paid_by_id = new mongoose.Types.ObjectId(paid_by);
-      console.log(group);
       if (group != undefined) {
-        console.log(" group ");
         let groupId = new mongoose.Types.ObjectId(group);
         return await this.splitwiseGroupAPIService.addBill(
           userIDs,
@@ -59,7 +54,6 @@ export class SplitwiseGroupAPIController {
           groupId
         );
       } else {
-        console.log("no group");
         return await this.splitwiseGroupAPIService.addBill(
           userIDs,
           amount,

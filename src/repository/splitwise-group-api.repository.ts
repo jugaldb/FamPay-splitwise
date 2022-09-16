@@ -23,7 +23,6 @@ export class SplitwiseGroupAPIRepository {
     owner: mongoose.Types.ObjectId
   ) {
     try {
-      console.log(" repository: " + name);
       const existingGroup = await Group.find({ name }).populate<{
         owner: SplitwiseUserInterface;
       }>("owner");
@@ -46,7 +45,6 @@ export class SplitwiseGroupAPIRepository {
       });
       await mapping.save();
       if (groupCreated) {
-        console.log(res);
         return { group: groupCreated, created: true, alreadyExists: false };
       }
     } catch (e: any) {
@@ -61,8 +59,6 @@ export class SplitwiseGroupAPIRepository {
     owner: mongoose.Types.ObjectId
   ) {
     try {
-      // console.log(" repository: " + name);
-      // console.log(group.toString());
       const existingGroup = await Group.find({ _id: group });
       if (existingGroup.length < 1) {
         return { message: "Incorrect group id" };
@@ -71,8 +67,7 @@ export class SplitwiseGroupAPIRepository {
       if (existingUser.length < 1) {
         return { message: "Incorrect user id" };
       }
-      console.log(owner);
-      console.log(existingGroup);
+
       const existingMapping = await UserGroupMapping.findOne({ user, group });
       if (existingMapping) {
         return { message: "user already in group" };
@@ -92,7 +87,6 @@ export class SplitwiseGroupAPIRepository {
   async addBill(toBeBilledObjects: any[]) {
     try {
       const bills = await Bill.insertMany(toBeBilledObjects);
-      console.log("hello from repo");
       return { bills: toBeBilledObjects };
     } catch (e: any) {
       console.log(e);

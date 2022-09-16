@@ -28,7 +28,6 @@ export class SplitwiseUserAPIRepository {
         name,
       });
       const res = await user.save();
-      console.log(res);
       return { user: user, created: true, alreadyExists: false };
     } catch (e: any) {
       console.log(e);

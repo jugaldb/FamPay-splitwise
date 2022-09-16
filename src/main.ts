@@ -33,7 +33,6 @@ class App {
 
     this.express.post("/api/user/create", (req, res) => {
       try {
-        console.log("revcieved");
         let name = req.body.name;
         let number = req.body.number;
         let email = req.body.email!;

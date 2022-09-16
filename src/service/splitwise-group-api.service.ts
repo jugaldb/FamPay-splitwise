@@ -10,13 +10,11 @@ export class SplitwiseGroupAPIService {
 
   async createGroup(name: string, owner: mongoose.Types.ObjectId) {
     let createdAt = new Date();
-    console.log(" xervie; " + name);
     const res = await this.splitwiseGroupAPIRepository.createGroup(
       name,
       createdAt,
       owner
     );
-    console.log("service: " + res);
     return res;
   }
 
@@ -40,8 +38,6 @@ export class SplitwiseGroupAPIService {
     group?: mongoose.Types.ObjectId
   ) {
     try {
-      console.log("hello from service");
-      console.log(group);
       let toBeBilledObjects = [];
       for (let user of users) {
         if (user._id.toString() == paid_by_id.toString()) {
