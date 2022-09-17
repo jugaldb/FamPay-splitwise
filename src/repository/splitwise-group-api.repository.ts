@@ -61,16 +61,16 @@ export class SplitwiseGroupAPIRepository {
     try {
       const existingGroup = await Group.find({ _id: group });
       if (existingGroup.length < 1) {
-        return { message: "Incorrect group id" };
+        return { message: "Incorrect group id", added: false };
       }
       const existingUser = await User.find({ _id: user });
       if (existingUser.length < 1) {
-        return { message: "Incorrect user id" };
+        return { message: "Incorrect user id", added: false };
       }
 
       const existingMapping = await UserGroupMapping.findOne({ user, group });
       if (existingMapping) {
-        return { message: "user already in group" };
+        return { message: "user already in group", added: false };
       }
 
       const mapping = new UserGroupMapping({
@@ -78,10 +78,10 @@ export class SplitwiseGroupAPIRepository {
         group: group,
       });
       await mapping.save();
-      return { message: "User added to group successfully" };
+      return { message: "User added to group successfully", added: true };
     } catch (e: any) {
       console.log(e);
-      return { error: e.toString() };
+      return { error: e.toString(), added: false };
     }
   }
   async addBill(toBeBilledObjects: any[]) {
