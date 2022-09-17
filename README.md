@@ -56,7 +56,7 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 ```docker build -t <image name> .```<br>
 
 - Open the ```docker-compose.yml``` file <br>
-- Change ```jugaldb/fampay-backend:latest``` with your  image name
+- Change ```jugaldb/fampay-backend:latest``` with your  image name in the ```docker-compose.yml``` file.
 - Run ```docker compose up``` to start the server.
 
 
