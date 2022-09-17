@@ -23,6 +23,11 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 - APIs should be designed keeping in mind the scale. Server should be able to handle concurrent requests without affecting the business logic.
 - Dockerize the project
 
+
+## ER Diagram 
+
+![image](https://user-images.githubusercontent.com/55304795/190842053-676aa9cc-3b8a-4a1e-9859-bc03945fc009.png)
+
   
 ## Tech stack used:
 
