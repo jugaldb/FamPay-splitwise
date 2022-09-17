@@ -8,20 +8,20 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 
 ## Features Implemented
 - APIs
-  1. Register a new user
+  1. Register a new user - ✅
 
-  2. Create a group
+  2. Create a group - ✅
 
-  3. Add a user to a group (only for group creator)
+  3. Add a user to a group (only for group creator) - ✅
 
-  4. Add a bill to the group along with details of how to split and among whom to split the bill
+  4. Add a bill to the group along with details of how to split and among whom to split the bill - ✅
 
-  5. List owe amount per user in total
+  5. List owe amount per user in total - ✅
 
-  6. List owe amount per user in a group
+  6. List owe amount per user in a group - ✅
 
-- APIs should be designed keeping in mind the scale. Server should be able to handle concurrent requests without affecting the business logic.
-- Dockerize the project
+- APIs should be designed keeping in mind the scale. Server should be able to handle concurrent requests without affecting the business logic. - ✅
+- Dockerize the project - ✅
 
 
 ## ER Diagram 
