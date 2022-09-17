@@ -4,7 +4,7 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 
 
 
-### The postman collection can be found at: [Postman Docs](https://documenter.getpostman.com/view/10968840/VUqrPd4s)
+### The postman collection can be found at: [Postman Docs](https://documenter.getpostman.com/view/10968840/2s7YfVar9T#1c053dcc-866b-435a-8912-7359e83f970e)
 
 ## Features Implemented
 - APIs
