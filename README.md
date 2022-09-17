@@ -26,7 +26,7 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 
 ## ER Diagram 
 
-![image](https://user-images.githubusercontent.com/55304795/190842053-676aa9cc-3b8a-4a1e-9859-bc03945fc009.png)
+![image](https://user-images.githubusercontent.com/55304795/190843488-e5518184-bb53-4a24-bbb3-f6b5e4389708.png)
 
   
 ## Tech stack used:
